@@ -1,0 +1,106 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #111;
+}
+
+.wrap-container {
+  width: 800px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 35px 55px 45px 55px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.superior-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.superior-part button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #00F5FF;
+}
+
+.wrap-container h1{
+  padding-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-input{
+  width: 200px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: none;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.add-input2 {
+  text-align: start;
+  height: 150px;
+  width: 250px;
+  font-size: 16px;
+  border: none;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.add-button{
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 80px;
+  height: 40px;
+  background-color: #00F5FF;
+  color: #333;
+}
+
+.message {
+  border: 1px solid #fff;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.message-title {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #666;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.message-icons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.edit-icon {
+  margin-right: 15px;
+  color: #00FA9A;
+}
+
+.delete-icon {
+  color: #FF4040;
+}
+
+.message-author {
+  margin-bottom: 10px;
+}

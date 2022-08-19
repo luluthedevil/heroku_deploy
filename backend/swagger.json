@@ -1,0 +1,279 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de CRUD de usuário",
+    "description": "Essa API tem como objetivo a manipulação das rotas de CRUD de usuário",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Luciana Ferreira",
+      "url": "https://github.com/luluthedevil"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API do projeto"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Mensagens",
+        "description": "Essa rota será responsável por mostrar todas as mensagens",
+        "tags": ["Mensagem"]
+      }
+    },
+    "/messages/new-entry": {
+      "get": {
+        "summary": "Mensagem",
+        "description": "Essa rota será responsável por mostrar uma mensagem",
+        "tags": ["Mensagem"]
+      },
+      "post": {
+        "summary": "Mensagens",
+        "description": "Essa rota será responsável por criar uma mensagem",
+        "tags": ["Mensagem"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema":{
+                "$ref": "#/components/schemas/Mensagem"
+              },
+              "examples": {
+                "mensagem": {
+                  "value": {
+                    "title": "Titulo da mensagem",
+                    "content": "Conteudo da mensagem"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "200":{
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Mensagem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "tags": ["Usuário"],
+        "requestBody": {
+          "content": {
+            "aplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              },
+              "examples": {
+                "usuario": {
+                  "value": {
+                    "username": "Julia Cristina",
+                    "email": "juliacristina123123@gmail.com",
+                    "password": "5359238746"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Usuário ja existente"
+          },
+          "200":{
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Encontrar usuários",
+        "description": "Essa rota será responsável por retornar todos os usuários",
+        "tags": ["Usuário"],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "200":{
+            "description": "OK",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/:id": {
+      "get": {
+        "summary": "Encontrar usuário",
+        "description": "Essa rota será responsável por retornar um usuário",
+        "tags": ["Usuário"],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "200":{
+            "description": "Ok com token jwt",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar usuário",
+        "description": "Essa rota será responsável por atualizar as informações de um usuário",
+        "tags": ["Usuário"],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "200":{
+            "description": "Ok",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar usuário",
+        "description": "Essa rota será responsável por deletar um usuário",
+        "tags": ["Usuário"],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "200":{
+            "description": "Ok com token jwt",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login de usuário",
+        "description": "Essa rota será responsável pelo login de usuário",
+        "tags": ["Usuário"],
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "200":{
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/verifyAccount/:token": {
+      "get": {
+        "summary": "Verifica o token do cadastro de usuário",
+        "description": "Essa rota será responsável por verificar o token de login de usuário",
+        "tags": ["Usuário"],
+        "security": [{"bearerAuth": []}],
+        "responses": {
+          "400": {
+            "description": "Token invalido"
+          },
+          "200":{
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Mensagem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemas": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
